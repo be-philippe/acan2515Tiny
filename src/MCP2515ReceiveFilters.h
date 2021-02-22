@@ -12,6 +12,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 #include <Arduino.h>
+#include <functional-vlpp.h>
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +36,7 @@ class ACAN2515Mask {
 //----------------------------------------------------------------------------------------------------------------------
 
 class ACAN2515AcceptanceFilter {
-  public: typedef void (*tCallBackRoutine) (const CANMessage & inMessage) ;
+  public: typedef vl::Func<void(const CANMessage & inMessage)> tCallBackRoutine;
   public: const ACAN2515Mask mMask ;
   public: const tCallBackRoutine mCallBack ;
 } ;

@@ -61,7 +61,7 @@ mReceiveBuffer (),
 mCallBackFunctionArray (),
 mTXBIsFree () {
   for (uint8_t i=0 ; i<6 ; i++) {
-    mCallBackFunctionArray [i] = NULL ;
+    mCallBackFunctionArray [i] = ACANCallBackRoutine() ;
   }
 }
 
@@ -188,11 +188,11 @@ bool ACAN2515Tiny::dispatchReceivedMessage (const tFilterMatchCallBack inFilterM
   const bool hasReceived = receive (receivedMessage) ;
   if (hasReceived) {
     const uint8_t filterIndex = receivedMessage.idx ;
-    if (NULL != inFilterMatchCallBack) {
+    if (inFilterMatchCallBack) {
       inFilterMatchCallBack (filterIndex) ;
     }
     ACANCallBackRoutine callBackFunction = mCallBackFunctionArray [filterIndex] ;
-    if (NULL != callBackFunction) {
+    if (callBackFunction) {
       callBackFunction (receivedMessage) ;
     }
   }

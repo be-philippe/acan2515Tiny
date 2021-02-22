@@ -16,6 +16,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 #include <Arduino.h>
+#include <functional-vlpp.h>
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -38,7 +39,7 @@ class CANMessage {
 
 typedef enum {kStandard, kExtended} tFrameFormat ;
 typedef enum {kData, kRemote} tFrameKind ;
-typedef void (*ACANCallBackRoutine) (const CANMessage & inMessage) ;
+typedef vl::Func<void(const CANMessage & inMessage)> ACANCallBackRoutine;
 
 //----------------------------------------------------------------------------------------------------------------------
 

@@ -13,6 +13,7 @@
 #include <ACAN2515TinySettings.h>
 #include <MCP2515ReceiveFilters.h>
 #include <SPI.h>
+#include <functional-vlpp.h>
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -54,8 +55,8 @@ class ACAN2515Tiny {
 //--- Receiving messages
   public: bool available (void) ;
   public: bool receive (CANMessage & outFrame) ;
-  public: typedef void (*tFilterMatchCallBack) (const uint8_t inFilterIndex) ;
-  public: bool dispatchReceivedMessage (const tFilterMatchCallBack inFilterMatchCallBack = NULL) ;
+  public: typedef vl::Func<void(const uint8_t inFilterIndex)> tFilterMatchCallBack;
+  public: bool dispatchReceivedMessage (const tFilterMatchCallBack inFilterMatchCallBack = tFilterMatchCallBack()) ;
 
 //--- Handling messages to send and receiving messages
   public: void isr (void) ;
