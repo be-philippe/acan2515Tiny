@@ -420,8 +420,8 @@ void ACAN2515Tiny::handleRXBInterrupt (void) {
     }
   //---
     unselect () ;
-  //--- Free receive buffer command
-    bitModify2515Register (CANINTF_REGISTER, accessRXB0 ? 0x01 : 0x02, 0) ;
+  // //--- Free receive buffer command
+  //   bitModify2515Register (CANINTF_REGISTER, accessRXB0 ? 0x01 : 0x02, 0) ;
   //--- Enter received message in receive buffer (if not full)
     mReceiveBuffer.append (message) ;
   }
